@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const botName = "Zeera";
 
 (async () => {
-  pubClient = createClient({ url: "redis://default:gLtybAimGT8W7xjC9s1IoL2RrMGw5Vdr@redis-11691.c275.us-east-1-4.ec2.cloud.redislabs.com:11691" });
+  pubClient = createClient({ url: process.env.redisURL });
   await pubClient.connect();
   subClient = pubClient.duplicate();
   io.adapter(createAdapter(pubClient, subClient));
